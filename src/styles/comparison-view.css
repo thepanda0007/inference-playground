@@ -1,0 +1,11 @@
+.comparison-view {
+  flex: 1;
+
+  width: 100%;
+
+  display: flex;
+
+  gap: 16px;
+
+  overflow: hidden;
+}
