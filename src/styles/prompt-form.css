@@ -3,8 +3,6 @@
   flex-direction: column;
   gap: 12px;
   flex-shrink: 0;
-
-  /* FIX: occupy the full column width and never shrink */
   width: 100%;
   min-width: 0;
 }
@@ -33,7 +31,7 @@
   box-shadow: 0 0 0 4px rgba(147, 197, 253, 0.2);
 }
 
-.prompt-form button {
+.prompt-form > button {
   align-self: flex-end;
   padding: 10px 22px;
   border-radius: 12px;
@@ -52,4 +50,72 @@
 .prompt-form button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.textarea-wrapper textarea {
+  width: 100%;
+  padding-right: 44px; /* room for mic button */
+  box-sizing: border-box;
+}
+
+/* Mic button — sits inside the textarea, bottom-right */
+.mic-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: #333 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.mic-button:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.15);
+  color: #000;
+  transform: scale(1.05);
+}
+
+.mic-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Active / recording state */
+.mic-button.mic-active {
+  background: rgba(239, 68, 68, 0.15);
+  color: rgb(220, 38, 38);
+  animation: mic-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes mic-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+}
+
+.stop-button {
+  background: #ef4444 !important;
+}
+
+.stop-button:hover {
+  background: #dc2626 !important;
 }

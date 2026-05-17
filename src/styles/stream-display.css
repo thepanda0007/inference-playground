@@ -1,11 +1,19 @@
 .stream-display {
   flex: 1;
 
+  min-width: 0;
+
+  min-height: 0;
+
+  width: 100%;
+
   overflow-y: auto;
 
   overflow-x: hidden;
 
   padding: 24px;
+
+  box-sizing: border-box;
 
   background: white;
 }
@@ -15,7 +23,11 @@
 
   max-width: 100%;
 
-  padding: 8px 12px 32px 12px;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 12px 16px 32px 16px;
 
   border-radius: 14px;
 
@@ -27,11 +39,9 @@
 
   white-space: pre-wrap;
 
-  word-break: break-word;
-
   overflow-wrap: anywhere;
 
-  box-sizing: border-box;
+  word-break: break-word;
 }
 
 .placeholder {

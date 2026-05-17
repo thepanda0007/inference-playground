@@ -1,11 +1,7 @@
 .model-pane {
-  width: 50%;
+  flex: 1;
 
-  min-width: 50%;
-
-  max-width: 50%;
-
-  height: 100%;
+  min-width: 0;
 
   display: flex;
 
@@ -20,6 +16,8 @@
   border: 1px solid #dbeafe;
 
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+
+  box-sizing: border-box;
 }
 
 .model-pane-header {
@@ -32,4 +30,6 @@
   font-weight: 600;
 
   font-size: 14px;
+
+  box-sizing: border-box;
 }
