@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+import "../styles/stream-display.css";
+
 interface Props {
   text: string;
   accent: string;
