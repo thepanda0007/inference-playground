@@ -48,7 +48,6 @@
   flex-shrink: 0;
 }
 
-/* Animated live indicator dot */
 .live-dot {
   display: inline-block;
   width: 5px;
