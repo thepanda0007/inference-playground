@@ -13,7 +13,8 @@ export default function App() {
 
   const isStreaming = status === "loading" || status === "streaming";
   const isDone = status === "done";
-  const hasResponses = responses.model1.length > 0 && responses.model2.length > 0;
+  const hasResponses =
+    responses.model1.length > 0 && responses.model2.length > 0;
 
   // Reset diff view when a new query starts
   const handleStart = (query: string) => {
@@ -25,10 +26,14 @@ export default function App() {
     <div className="app">
       <div className="top-section">
         <div className="header">
-          <h1>Model Comparison</h1>
+          <h1>Model Diff Inference Playground</h1>
         </div>
 
-        <PromptForm onSubmit={handleStart} onStop={stop} disabled={isStreaming} />
+        <PromptForm
+          onSubmit={handleStart}
+          onStop={stop}
+          disabled={isStreaming}
+        />
 
         {/* Show diff toggle only when both responses are ready */}
         {isDone && hasResponses && (
@@ -37,17 +42,7 @@ export default function App() {
               className={`diff-toggle-btn ${showDiff ? "active" : ""}`}
               onClick={() => setShowDiff((v) => !v)}
             >
-              {showDiff ? (
-                <>
-                  <span className="diff-toggle-icon">◧</span>
-                  View Responses
-                </>
-              ) : (
-                <>
-                  <span className="diff-toggle-icon">⬡</span>
-                  View Token Diff
-                </>
-              )}
+              {showDiff ? <>View Responses</> : <>View Token Diff</>}
             </button>
           </div>
         )}

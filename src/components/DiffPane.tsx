@@ -9,13 +9,7 @@ interface Props {
   side: "a" | "b";
 }
 
-export default function DiffPane({
-  title,
-  accent,
-  chunks,
-  stats,
-  side,
-}: Props) {
+export default function DiffPane({ title, accent, chunks, stats, side }: Props) {
   return (
     <div className="diff-pane">
       {/* Header */}
@@ -23,8 +17,6 @@ export default function DiffPane({
         <span className="diff-pane-title" style={{ color: accent }}>
           {title}
         </span>
-
-        {/* Stats row */}
         <div className="diff-stats">
           <span className="stat-similarity" style={{ color: accent }}>
             {stats.similarityPct}% similar
@@ -34,25 +26,42 @@ export default function DiffPane({
 
       {/* Diff content */}
       <div className="diff-content">
-        {chunks.map((chunk) => (
-          <span key={chunk.chunkIndex} className="diff-chunk">
-            {chunk.diff.map((token, i) => {
-              if (side === "a" && token.label === "ADD") return null;
-              if (side === "b" && token.label === "REMOVE") return null;
+        {chunks.map((chunk) => {
+          // Build a frequency map of matched tokens from the diff
+          const matchFreq: Record<string, number> = {};
+          for (const t of chunk.diff) {
+            if (t.label === "MATCH") {
+              matchFreq[t.token] = (matchFreq[t.token] ?? 0) + 1;
+            }
+          }
 
-              return (
-                <span
-                  key={i}
-                  className={`diff-token diff-token--${token.label.toLowerCase()}`}
-                >
-                  {token.token}{" "}
-                </span>
-              );
-            })}
-            {/* Sentence gap */}
-            {chunk.chunkIndex < chunks.length - 1 && " "}
-          </span>
-        ))}
+          // Render original text, coloring each word using the match freq map
+          const originalText = side === "a" ? chunk.chunkA : chunk.chunkB;
+          const words = originalText.split(/\s+/).filter(Boolean);
+
+          return (
+            <span key={chunk.chunkIndex} className="diff-chunk">
+              {words.map((word, i) => {
+                const key = word; // no lowercasing, as per requirement
+                let label: "match" | "add" | "remove";
+
+                if (matchFreq[key] > 0) {
+                  matchFreq[key]--;
+                  label = "match";
+                } else {
+                  label = side === "a" ? "remove" : "add";
+                }
+
+                return (
+                  <span key={i} className={`diff-token diff-token--${label}`}>
+                    {word}{" "}
+                  </span>
+                );
+              })}
+              {chunk.chunkIndex < chunks.length - 1 && " "}
+            </span>
+          );
+        })}
       </div>
     </div>
   );

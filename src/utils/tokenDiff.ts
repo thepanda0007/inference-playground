@@ -20,8 +20,8 @@ export function splitIntoChunks(text: string): string[] {
 
 /** Hash-map based token diff — O(n + m) */
 export function tokenDiff(chunkA: string, chunkB: string): DiffToken[] {
-  const tokensA = chunkA.toLowerCase().split(/\s+/).filter(Boolean);
-  const tokensB = chunkB.toLowerCase().split(/\s+/).filter(Boolean);
+  const tokensA = chunkA.split(/\s+/).filter(Boolean);
+  const tokensB = chunkB.split(/\s+/).filter(Boolean);
 
   // Build frequency map for B
   const freqB: Record<string, number> = {};
@@ -83,7 +83,9 @@ export interface DiffStats {
 }
 
 export function getDiffStats(chunks: ChunkDiff[]): DiffStats {
-  let matches = 0, additions = 0, removals = 0;
+  let matches = 0,
+    additions = 0,
+    removals = 0;
   for (const chunk of chunks) {
     for (const t of chunk.diff) {
       if (t.label === "MATCH") matches++;

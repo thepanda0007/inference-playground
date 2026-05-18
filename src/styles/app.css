@@ -11,9 +11,10 @@
   flex-shrink: 0;
 }
 
-h1,
-p {
+h1 {
   text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .app {
@@ -56,18 +57,13 @@ p {
 }
 
 .diff-toggle-btn:hover {
-  background: brown;
+  background: navy;
   color: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 .diff-toggle-btn.active {
-  background: brown;
+  background: navy;
   color: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.2);
-}
-
-.diff-toggle-icon {
-  font-size: 1rem;
-  line-height: 1;
 }

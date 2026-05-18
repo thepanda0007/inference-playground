@@ -119,3 +119,12 @@
 .stop-button:hover {
   background: #dc2626 !important;
 }
+
+.note-to-user {
+  color: maroon;
+}
+.note-to-user .ques {
+  color: navy;
+  font: 0.8rem;
+  font-style: italic;
+}

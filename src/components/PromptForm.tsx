@@ -183,7 +183,14 @@ export default function PromptForm({ onSubmit, onStop, disabled }: Props) {
           </button>
         )}
       </div>
-
+      <p className="note-to-user">
+        Ask:{" "}
+        <span className="ques">
+          What is polymorphism in object-oriented programming
+        </span>{" "}
+        OR <span className="ques">What is a database index</span> OR{" "}
+        <span className="ques">Explain the purpose of caching</span>
+      </p>
       <button
         onClick={disabled ? onStop : handleSubmit}
         disabled={!disabled && !query.trim()}

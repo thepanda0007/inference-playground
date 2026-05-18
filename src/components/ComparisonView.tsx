@@ -11,11 +11,16 @@ interface Props {
   metrics: MetricsState;
 }
 
-export default function ComparisonView({ model1, model2, streaming, metrics }: Props) {
+export default function ComparisonView({
+  model1,
+  model2,
+  streaming,
+  metrics,
+}: Props) {
   return (
     <div className="comparison-view">
       <ModelPane
-        title="Model 1"
+        title="MODEL 1"
         text={model1}
         accent="#7c6af7"
         streaming={streaming}
@@ -23,7 +28,7 @@ export default function ComparisonView({ model1, model2, streaming, metrics }: P
       />
 
       <ModelPane
-        title="Model 2"
+        title="MODEL 2"
         text={model2}
         accent="#22c5a0"
         streaming={streaming}

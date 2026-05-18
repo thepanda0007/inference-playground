@@ -16,14 +16,14 @@ export default function DiffView({ model1, model2 }: Props) {
     <div className="diff-view">
       <div className="diff-panes">
         <DiffPane
-          title="Model 1"
+          title="MODEL 1"
           accent="#7c6af7"
           chunks={chunks}
           stats={stats}
           side="a"
         />
         <DiffPane
-          title="Model 2"
+          title="MODEL 2"
           accent="#22c5a0"
           chunks={chunks}
           stats={stats}
